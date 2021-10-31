@@ -11,13 +11,10 @@ route.post('/register', AuthController.register);
 route.post('/login', AuthController.login);
 
 // NEWS
-route.get('/news', NewsController.allNews);
-// ('/news?title=Pesquisa')
+route.get('/news', NewsController.allNews); // news?title=Search
 route.post('/news/create', verifyJWT, NewsController.create);
 route.get('/news/view/:news_url', NewsController.index);
+route.post('/news/view/:news_url/edit', verifyJWT, NewsController.edit);
 route.delete('/news/view/:news_url/delete', verifyJWT, NewsController.delete);
-
-// edit news
-// search news '/news/search?title=title
 
 module.exports = route;
