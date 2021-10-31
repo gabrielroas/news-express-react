@@ -7,9 +7,11 @@ module.exports = {
     async create(req, res) {
         try {
             const user_id = req.userId;
-            // const user = await User.findByPk(user_id);
             const { title, content, thumb_url } = req.body;
+
             const news_url = title.replace(/\s/g, "-").toLowerCase();
+            // let arrayContent = content.match(/(.{1,10})/g);
+            // return res.json(arrayContent);            
 
             const news = await News.create({
                 user_id,

@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react';
+import Routes from './routes'
+import GlobalStyle from './styles/global'
+import { logout, isAuthenticated } from "./services/auth";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+
+    <Fragment>
+        <h1>News</h1>
+        <a href="/home"> Home </a>|
+        <a href="/profile"> MyProfile </a>|
+        {
+            isAuthenticated() ?
+            <a href="/" onClick={() => logout()}> LogOut </a> :
+            <a href="/signin"> Login</a>
+        }
+
+        <Routes />
+        <GlobalStyle />
+    </Fragment>
+)
 
 export default App;
