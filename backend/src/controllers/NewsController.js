@@ -45,27 +45,32 @@ module.exports = {
     },
 
     async edit(req, res) {
-        const user_id = req.userId;
+        try {
+            const user_id = req.userId;
 
-        const { news_url } = req.params;
-        const news = await News.findOne({
-            where: { news_url: news_url },
-        });
+            const { news_url } = req.params;
+            const news = await News.findOne({
+                where: { news_url: news_url },
+            });
 
-        if (user_id != news.user_id) {
-            return res.status(401).send({ error: 'Its was not possible edit news' });
-        }
-
-        const { title, content, thumb_url } = req.body;
-        const custom_url = title.replace(/\s/g, "-").toLowerCase();
-
-        const newsEdit = await News.update(
-            { title, content, thumb_url, news_url: custom_url },
-            {
-                where: { news_url: news_url }
+            if (user_id != news.user_id) {
+                return res.status(401).send({ error: 'Its was not possible edit news' });
             }
-        );
-        res.status(200).json({ success: "News updated" });
+
+            const { title, content, thumb_url } = req.body;
+            const custom_url = title.replace(/\s/g, "-").toLowerCase();
+
+            const newsEdit = await News.update(
+                { title, content, thumb_url, news_url: custom_url },
+                {
+                    where: { news_url: news_url }
+                }
+            );
+            res.status(200).json({ success: "News updated" });
+        }
+        catch (e) { 
+            res.status(500).json({ error: "Unable update news" });
+        }
     },
 
     async delete(req, res) {
