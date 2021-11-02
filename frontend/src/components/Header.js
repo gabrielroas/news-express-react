@@ -36,7 +36,8 @@ class Header extends Component {
     render() {
         return (
             <Bar>
-                <Title><Link href="/home"><FontAwesomeIcon icon={faNewspaper} /> Global News</Link></Title>
+                <Title><Link href="/news"><FontAwesomeIcon icon={faNewspaper} /> Global News</Link></Title>
+                <input></input>
                 {
                     isAuthenticated() ?
                         <Link href="/" onClick={() => logout()}> Logout <FontAwesomeIcon icon={faSignOutAlt} /></Link> :
