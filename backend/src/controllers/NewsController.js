@@ -9,15 +9,22 @@ module.exports = {
             const user_id = req.userId;
             const { title, content, thumb_url } = req.body;
 
-            const news_url = title.replace(/\s/g, "-").toLowerCase();           
+            const news_title_replace = title.replace(/\s/g, "-").toLowerCase();            
+            const news_title_cout = await News.count({
+                where: {
+                  title: title,
+                }
+              });
+            const news_title_url = news_title_replace + "-" + (news_title_cout +1) 
 
             const news = await News.create({
                 user_id,
                 title,
                 content,
-                news_url,
+                news_url : news_title_url,
                 thumb_url,
             });
+
             res.status(201).json({ success: 'News created success!' });
         }
         catch (e) {
