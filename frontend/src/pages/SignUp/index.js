@@ -4,7 +4,7 @@ import api from "../../services/api";
 
 import Logo from "../../assets/profile-svgrepo-com.svg";
 
-import { Form, Container } from "./styles";
+import { Form, Container, Error, Success } from "./styles";
 
 import { isAuthenticated } from "../../services/auth";
 
@@ -13,7 +13,8 @@ class SignUp extends Component {
     name: "",
     email: "",
     password: "",
-    error: ""
+    error: "",
+    success: ""
   };
 
   handleSignUp = async e => {
@@ -24,7 +25,13 @@ class SignUp extends Component {
     } else {
       try {
         await api.post("/register", { name, email, password });
-        this.props.history.push("/");
+        this.setState({ success: "Cadastrado com sucesso! Vocẽ será redirecionado." });
+
+        setTimeout(function () {
+          // this.props.history.push("/signin");
+          window.location.href = "/signin";
+
+        }, 2000)
       } catch (err) {
         console.log(err);
         this.setState({ error: "Ocorreu um erro ao registrar sua conta." });
@@ -44,7 +51,9 @@ class SignUp extends Component {
             <img src={Logo} alt="News" />
             SignUp
             <hr />
-            {this.state.error && <p>{this.state.error}</p>}
+            {this.state.error && <Error>{this.state.error}</Error>}
+            {this.state.success && <Success>{this.state.success}</Success>}
+
             <input
               type="text"
               placeholder="Nome de usuário"

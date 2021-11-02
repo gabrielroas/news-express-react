@@ -18,14 +18,7 @@ export const Form = styled.form`
     width: 100px;
     margin: 10px 0 40px;
   }
-  p {
-    color: #ff3333;
-    margin-bottom: 15px;
-    border: 1px solid #ff3333;
-    padding: 10px;
-    width: 100%;
-    text-align: center;
-  }
+
   input {
     // flex: 1;
     border-radius: 5px;
@@ -61,4 +54,23 @@ export const Form = styled.form`
     color: #999;
     text-decoration: none;
   }
+`;
+
+export const Success = styled.p`
+  background: #d8ffbf;
+  color: #00810b;
+  margin-bottom: 15px;
+  border: 1px solid #228900;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+`;
+
+export const Error = styled.p`
+  color: #ff3333;
+  margin-bottom: 15px;
+  border: 1px solid #ff3333;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
 `;
