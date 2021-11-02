@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import CreateNews from "./pages/CreateNews";
+import News from "./pages/News";
 // import App from "./pages/App";
 
 
@@ -28,7 +29,9 @@ const Routes = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/home" component={Home} />
+      <Route exact path="/news" component={Home} />
+      <Route exact path="/news/:news_url" component={News} />
+
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
       <PrivateRoute path="/new" component={CreateNews} />
