@@ -15,7 +15,7 @@ module.exports = {
                   title: title,
                 }
               });
-            const news_title_url = news_title_replace + "-" + (news_title_cout +1) 
+            const news_title_url = `${news_title_replace}-${news_title_cout+1}`;
 
             const news = await News.create({
                 user_id,
