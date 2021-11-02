@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import api from "../../services/api";
+import { Title, HorizontalLine } from "./styles";
 
 class Home extends Component {
     state = {
@@ -16,16 +17,17 @@ class Home extends Component {
 
         return (
             <div>
-                <h2>Todas noticias</h2>
+                <Title>Ultimas Notícias</Title>
+                <HorizontalLine />
                 {console.log(news.content)}
                 {news.map(news => (
                     <li key={news.id}>
                         <h4>
                             <a href={news.news_url}> {news.title} </a>
                         </h4>
-                        <i>{news.content}</i>
-                        Autor: { news.author.name }
-                        <img src={news.thumb_url} />
+                        <div dangerouslySetInnerHTML={{ __html: news.content}}></div>
+                        Autor: {news.author.name}
+                        <img src={news.thumb_url} alt="Thumbnail" />
                         <br />
                     </li>
                 ))}
