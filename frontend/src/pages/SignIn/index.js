@@ -25,8 +25,8 @@ class SignIn extends Component {
     } else {
       try {
         const response = await api.post("/login", { email, password });
-        login(response.data.token);
-        this.props.history.push("/");
+        login(response.data.token);        
+        window.location.href = "/";
       } catch (err) {
         this.setState({
           error:
