@@ -1,8 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 
-import "font-awesome/css/font-awesome.css";
 
 const GlobalStyle = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -11,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
 }
 body, html {
   background: #eee;
-  font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
   height: 100%;
