@@ -29,10 +29,10 @@ class CreateNews extends Component {
         const response = await api.post("/news/create", { title, content, thumb_url });
         this.setState({ success: "Notícia criada com sucesso! Vocẽ será redirecionado." });
 
-        setTimeout(function () {
-          window.location.href = "/";
+        // setTimeout(function () {
+        //   window.location.href = "/";
 
-        }, 2000)
+        // }, 2000)
       } catch (err) {
         this.setState({
           error:
