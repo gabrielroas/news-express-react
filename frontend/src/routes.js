@@ -30,11 +30,13 @@ const Routes = () => (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/news" component={Home} />
-      <Route exact path="/news/:news_url" component={News} />
+      <PrivateRoute path="/news/create" component={CreateNews} />
+      <Route exact path="/news/view/:news_url" component={News} />
+      {/* <Route exact path="/news/search/:news_url" component={News} /> */}
+
 
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
-      <PrivateRoute path="/new" component={CreateNews} />
 
       {/* <Route exact path="/" component={isAuthenticated() ? App : Home} /> */}
       {/* <PrivateRoute path="/app" component={App} /> */}

@@ -23,7 +23,7 @@ class Home extends Component {
                 {news.map(news => (
                     <li key={news.id}>
                         <h4>
-                        <NavLink to={`/news/${news.news_url}`}>{ news.title}</NavLink>
+                        <NavLink to={`/news/view/${news.news_url}`}>{ news.title}</NavLink>
 
                         </h4>
                         <div dangerouslySetInnerHTML={{ __html: news.content }}></div>
