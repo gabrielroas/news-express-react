@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import SignUp from "./pages/SignUp";
-import SignIn from "./pages/SignIn";
 import Home from "./pages/Home";
-import App from "./pages/App";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import CreateNews from "./pages/CreateNews";
+// import App from "./pages/App";
 
 
 
@@ -26,10 +27,13 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 const Routes = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={isAuthenticated() ? App : Home} />
+      <Route exact path="/" component={Home} />
       <Route path="/home" component={Home} />
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
+      <PrivateRoute path="/new" component={CreateNews} />
+
+      {/* <Route exact path="/" component={isAuthenticated() ? App : Home} /> */}
       {/* <PrivateRoute path="/app" component={App} /> */}
       <Route path="*" component={() => <h1>Page not found</h1>} />
     </Switch>
