@@ -38,9 +38,8 @@ module.exports = {
 
             const news = await News.findOne({
                 where: { news_url: news_url },
-                include: [
-                    { association: 'author', attributes: ['name'] },
-                ]
+                include:  {association: 'author', attributes: ['name'] },
+                
             });
             if (!news) return res.status(404).json({ error: 'News not found.' });
 
