@@ -4,8 +4,10 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import CreateNews from "./pages/CreateNews";
 import News from "./pages/News";
+import CreateNews from "./pages/CreateNews";
+import EditNews from "./pages/EditNews";
+
 // import App from "./pages/App";
 
 
@@ -32,6 +34,8 @@ const Routes = () => (
       <Route exact path="/news" component={Home} />
       <PrivateRoute path="/news/create" component={CreateNews} />
       <Route exact path="/news/view/:news_url" component={News} />
+      <PrivateRoute path="/news/view/:news_url/edit" component={EditNews} />
+
       {/* <Route exact path="/news/search/:news_url" component={News} /> */}
 
 
