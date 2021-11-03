@@ -10,6 +10,13 @@ export const Title = styled.h2`
 
 export const HorizontalLine = styled.h1` 
     border-bottom: 2px solid black;
-    width: 190px;
+    width: 200px;
     margin: auto;
+`;
+
+export const SearchDiv = styled.div` 
+    position: relative;
+    overflow: ;
+    text-align: right;
+    top: 10px;
 `;

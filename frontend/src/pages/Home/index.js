@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import api from "../../services/api";
-import { Title, HorizontalLine } from "./styles";
+import { Title, HorizontalLine, SearchDiv } from "./styles";
 import { NavLink } from "react-router-dom";
 import Search from "../../components/Search";
 
 class Home extends Component {
     state = {
+        search: false,
         news: [],
     }
 
@@ -18,16 +19,19 @@ class Home extends Component {
         e.preventDefault();
         const response = await api.get('news?title=' + filterName)
         this.setState({ news: response.data });
-        console.log(this.state.news)
+        this.setState({ search: true });
+        if(!filterName) {
+            this.setState({ search: false });
+        }
     }
 
     render() {
-        const { news } = this.state;
+        const { news, search } = this.state;
 
         return (
             <div>
-                <div><Search filterNews={this.filterNews} /></div>
-                <Title>Ultimas Notícias</Title>
+                <SearchDiv><Search filterNews={this.filterNews} /></SearchDiv>
+                <Title>{search ? "Resultado da Pesquisa" : "Ultimas Notícias"}</Title>
                 <HorizontalLine />
                 <form action="/news/create">
                     <input type="submit" value="Nova notícia" />
