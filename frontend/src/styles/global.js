@@ -11,6 +11,8 @@ const GlobalStyle = createGlobalStyle`
   outline: 0;
 }
 body, html {
+  overflow-x: hidden;
+
   background: #eee;
   font-family: 'Roboto', sans-serif;
   text-rendering: optimizeLegibility !important;
