@@ -8,14 +8,11 @@ module.exports = {
     async register(req, res) {
         try {
             const { name, email, password } = req.body;
-            console.log(name + " " + email + " " + password) 
             const password_bcrypt = await bcrypt.hash(password, 10);
-            console.log(password_bcrypt)
             const user = await User.create({ name, email, password: password_bcrypt });
-
             res.status(201).json({ success: 'You have been successfully registered.' });
         }
-        catch (err) {            
+        catch (err) {
             res.status(500).json({ error: "Unable to register" });
         }
     },
@@ -38,7 +35,7 @@ module.exports = {
                 res.status(401).json({ error: "Incorrect user" });
             }
         }
-        catch (e) {            
+        catch (e) {
             res.status(500).json({ error: "Unable to login" });
         }
     }
