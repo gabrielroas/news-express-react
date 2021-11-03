@@ -4,18 +4,33 @@ import api from "../../services/api";
 class News extends Component {
   state = {
     news: '',
-    author: ''
+    author: '',
+    user: '',
   }
 
   async componentDidMount() {
-    const response = await api.get(`news/view/${this.props.match.params.news_url}`)
-    this.setState({ news: response.data });
-    this.setState({ author: response.data.author.name })
+    await api.get(`news/view/${this.props.match.params.news_url}`)
+      .then(res => {
+        // const {news} = res.data;
+        this.setState({ news: res.data });
+        this.setState({ author: res.data.author });
+      })
+    await api.get('profile')
+      .then(res => {
+        this.setState({ user: res.data });
+      })
+  }
 
+  handleDelete = event => {
+    event.preventDefault();
+
+    api.delete(`news/view/${this.props.match.params.news_url}/delete`)
+      .then(res => {
+      })
   }
 
   render() {
-    const { news, author } = this.state;
+    const { news, author, user } = this.state;
 
     const FormatDateCreatedAt = (unformattedDate) => {
       var currentDate = new Date(unformattedDate);
@@ -38,8 +53,22 @@ class News extends Component {
           </h4>
           {createdAt}
           <div dangerouslySetInnerHTML={{ __html: news.content }}></div>
-          Autor: {author}
+          Autor: {author.name}
           <img src={news.thumb_url} alt="Thumbnail" />
+          {
+            user.id == author.id
+              ?
+              <div>
+                <form onSubmit={this.handleDelete}>
+                  <button type="submit">Delete</button>
+                </form>
+                <form action={`/news/view/${this.props.match.params.news_url}/edit`}>
+                  <input type="submit" value="Editar notícia" />
+                </form>
+              </div>
+              :
+              null
+          }
           <br />
         </li>
 
