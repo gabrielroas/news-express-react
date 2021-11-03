@@ -45,7 +45,7 @@ class EditNews extends Component {
     } else {
       try {
         const response = await api.post(`news/view/${this.props.match.params.news_url}/edit`, { title, content, thumb_url });
-        this.setState({ success: "Notícia criada com sucesso! Vocẽ será redirecionado." });
+        this.setState({ success: "Notícia editada com sucesso! Vocẽ será redirecionado." });
 
         setTimeout(function () {
           window.location.href = "/";
