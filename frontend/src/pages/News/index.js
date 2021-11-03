@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import api from "../../services/api";
+import { NewsContainer, HorizontalLine, Button, ButtonsDiv, ButtonIcon } from "./styles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 
 class News extends Component {
   state = {
@@ -39,7 +42,7 @@ class News extends Component {
       var newDate =
         ("00" + currentDate.getDate()).slice(-2) + "/" +
         ("00" + (currentDate.getMonth() + 1)).slice(-2) + "/" +
-        currentDate.getFullYear() + " " +
+        currentDate.getFullYear() + " às " +
         ("00" + currentDate.getHours()).slice(-2) + ":" +
         ("00" + currentDate.getMinutes()).slice(-2) + ":" +
         ("00" + currentDate.getSeconds()).slice(-2);
@@ -48,33 +51,38 @@ class News extends Component {
     const createdAt = FormatDateCreatedAt(news.createdAt);
 
     return (
-      <div>
-        <li key={news.id}>
-          <h4>
-            {news.title}
-          </h4>
-          {createdAt}
-          <div dangerouslySetInnerHTML={{ __html: news.content }}></div>
-          Autor: {author.name}
-          <img src={news.thumb_url} alt="Thumbnail" />
-          {
-            user.id == author.id
-              ?
-              <div>
-                <form onSubmit={this.handleDelete}>
-                  <button type="submit">Delete</button>
-                </form>
-                <form action={`/news/view/${this.props.match.params.news_url}/edit`}>
-                  <input type="submit" value="Editar notícia" />
-                </form>
-              </div>
-              :
-              null
-          }
-          <br />
-        </li>
 
-      </div>
+      <NewsContainer key={news.id}>
+
+        <h6>Por {author.name} em {createdAt}</h6>
+        <HorizontalLine lineWidth="30%" />
+        <h1>{news.title}</h1>
+
+        <img src={news.thumb_url} alt="Thumbnail" />
+
+        <p dangerouslySetInnerHTML={{ __html: news.content }} />
+        <br />
+        {
+          user.id == author.id
+            ?
+            <ButtonsDiv>
+              <form action={`/news/view/${this.props.match.params.news_url}/edit`}>
+                <Button type="submit" value="Editar notícia" buttonHoverColor="#40bd67"  />
+                <ButtonIcon>
+                  <FontAwesomeIcon color="black" icon={faEdit} />
+                </ButtonIcon>
+              </form>
+              <form onSubmit={this.handleDelete}>
+                <Button type="submit" value="Excluir notícia" buttonHoverColor="red" />
+                <ButtonIcon>
+                  <FontAwesomeIcon color="black" icon={faTrashAlt} />
+                </ButtonIcon>
+              </form>
+            </ButtonsDiv>
+            :
+            null
+        }
+      </NewsContainer>
     )
   }
 }
