@@ -7,11 +7,11 @@ const SearchInput = styled.input`
 padding: 0 20px 0 20px;
     border-radius: 5px;
     height: 30px;       
-    width: 15%;
+    width: 70%;
     font-size: 15px;
-    margin-top: 2px;  
+    margin-top: -15px;  
     color: #a5a5a5;
-    border: 1px solid #ddd;
+    border: 1px solid #000;
     &:focus {
     border: 2px solid #ddd;
     }
