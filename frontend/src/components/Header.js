@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { logout, isAuthenticated } from "../services/auth";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle, faSignOutAlt, faNewspaper } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle, faSignOutAlt, faNewspaper } from '@fortawesome/free-solid-svg-icons';
 
 const Bar = styled.div`
     position: relative;
@@ -31,13 +31,14 @@ const Link = styled.a`
 `;
 
 
+
+
 class Header extends Component {
 
     render() {
         return (
             <Bar>
                 <Title><Link href="/news"><FontAwesomeIcon icon={faNewspaper} /> Global News</Link></Title>
-                <input></input>
                 {
                     isAuthenticated() ?
                         <Link href="/" onClick={() => logout()}> Logout <FontAwesomeIcon icon={faSignOutAlt} /></Link> :
