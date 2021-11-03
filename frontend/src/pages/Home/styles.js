@@ -47,7 +47,8 @@ export const Button = styled.input`
     
     &:hover {    
     background: #e1e1e1;
-    border: 3px solid #000;
+    border: 1px solid #000;
+    // border-bottom: 1px solid #cccccc52;
 
     }
 `;
@@ -68,7 +69,7 @@ export const NewsContainer = styled.div`
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 20px;
-    grid-row-gap: 0px;
+    grid-row-gap: 20px;
 `;
 
 export const NewsItem = styled.div`           
@@ -79,11 +80,16 @@ export const NewsItem = styled.div`
     margin: 0 auto;
     // border: 1px solid #ccc;
     border-right: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-
-    // border-radius: 40px;
+    border-bottom: 1px solid #cccccc52;
+    border-top: 1px solid #ddd9d92e;
     color: #333;
     padding: 15px;
+    &:hover {    
+        background: #e1e1e180;
+        // border: 1px solid #000;
+    }
+
+    // border-radius: 40px;
     
     h2 {        
         @import url('https://fonts.googleapis.com/css2?family=Zen+Antique&display=swap');
@@ -99,18 +105,16 @@ export const NewsItem = styled.div`
         color: #767676;  
     } 
     p { 
-        text-align: center;   
-        margin: -3px 0px 10px 0px;
+        text-align: justify;   
+        margin: -3px 0px 15px 0px;
     }
     img {
         // width: 100%;
         width: 100%;
-        height: 230px;
+        height: 220px;
         object-fit: cover;
+        border: 1px insert #e1e1e1;
         // object-position: 20% 10%; 
-        // max-width:340px;
-        // padding-bottom: 5px;
-        border-bottom: 1px solid #ccc;
-
+        
     }
 `;

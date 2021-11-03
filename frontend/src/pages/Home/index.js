@@ -42,7 +42,7 @@ class Home extends Component {
                         <Button disabled="disabled" value="Nova notícia" />
                         <ButtonIcon><FontAwesomeIcon color="black" icon={faPlus} />
                         </ButtonIcon>
-                    </Link> : null
+                    </Link> : <div></div>
                 }
                 <Search filterNews={this.filterNews} />
                 </ButtonAndSearchDiv>
@@ -54,7 +54,7 @@ class Home extends Component {
                                 <h2>
                                     {news.title}
                                 </h2>
-                                <p dangerouslySetInnerHTML={{ __html: news.content.substring(0, 150) + "..." }} />
+                                <p dangerouslySetInnerHTML={{ __html: news.content.substring(0, news.thumb_url ? 100 : 190) + "..." }} />
                                 { news.thumb_url ? <img src={news.thumb_url} alt="Thumbnail" /> : null } 
                                 <br />
                             </NewsItem>
