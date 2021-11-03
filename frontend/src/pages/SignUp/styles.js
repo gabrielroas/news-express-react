@@ -36,11 +36,16 @@ export const Form = styled.form`
   button {
     color: #fff;
     font-size: 16px;
-    background: #63a0fc;
+    background: #7088ad;
     height: 56px;
-    border: 0;
+    border: 1px solid #eee;
     border-radius: 5px;
     width: 100%;
+    &:hover {
+      border: 1px solid #7088f3; 
+      // background: #eee;
+
+    }
   }
   hr {
     margin: 20px 0;

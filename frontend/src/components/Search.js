@@ -15,6 +15,13 @@ padding: 0 20px 0 20px;
     &:focus {
     border: 2px solid #ddd;
     }
+    ::placeholder,
+    ::-webkit-input-placeholder {
+        color: #ddd;
+    }
+    :-ms-input-placeholder {
+        color: #ddd;
+    }
 `;
 const SearchIcon = styled.span`
 color: #ddd;
@@ -24,7 +31,7 @@ right: 20px;
 
 const Search = props => (
     <form onSubmit={props.filterNews}>
-        <SearchInput type="text" name="filterName" /><SearchIcon><FontAwesomeIcon icon={faSearch} /></SearchIcon>
+        <SearchInput placeholder="Pesquisar notícia" type="text" name="filterName" /><SearchIcon><FontAwesomeIcon icon={faSearch} /></SearchIcon>
     </form>
 );
 
