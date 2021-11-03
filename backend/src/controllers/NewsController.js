@@ -1,12 +1,12 @@
-const { Op } = require('sequelize');
 const News = require('../models/News');
 const User = require('../models/User');
+const { Op } = require('sequelize');
 
 module.exports = {
 
     async create(req, res) {
         try {
-            const user_id = req.userId;
+            const user_id = req.user_id;
             const { title, content, thumb_url } = req.body;
 
             const news_title_replace = title.replace(/\s/g, "-").toLowerCase();
@@ -52,7 +52,7 @@ module.exports = {
 
     async edit(req, res) {
         try {
-            const user_id = req.userId;
+            const user_id = req.user_id;
 
             const { news_url } = req.params;
             const news = await News.findOne({
@@ -72,7 +72,7 @@ module.exports = {
             });
             const news_title_url = `${news_title_replace}-${news_title_cout + 1}`;
 
-            const newsEdit = await News.update(
+            const news_edit = await News.update(
                 { title, content, thumb_url, news_url: news_title_url },
                 {
                     where: { news_url: news_url }
@@ -94,8 +94,7 @@ module.exports = {
             });
             if (!news) return res.status(404).json({ error: 'News not found.' });
 
-            const user_id = req.userId;
-            //const user = await User.findByPk(user_id);
+            const user_id = req.user_id;
 
             if (user_id == news.user_id) {
                 await news.destroy();

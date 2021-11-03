@@ -37,17 +37,17 @@ class Home extends Component {
                 <Title>{search ? "Resultados da Pesquisa" : "Ultimas Notícias"}</Title>
                 <HorizontalLine lineWidth={search ? "270px" : "190px"} />
                 <ButtonAndSearchDiv>
-                {isAuthenticated() ?
-                    <Link style={{ textDecoration: 'none' }} to={`/news/create`}>
-                        <Button disabled="disabled" value="Nova notícia" />
-                        <ButtonIcon><FontAwesomeIcon color="black" icon={faPlus} />
-                        </ButtonIcon>
-                    </Link> : <div></div>
-                }
-                <Search filterNews={this.filterNews} />
+                    {isAuthenticated() ?
+                        <Link style={{ textDecoration: 'none' }} to={`/news/create`}>
+                            <Button disabled="disabled" value="Nova notícia" />
+                            <ButtonIcon><FontAwesomeIcon color="black" icon={faPlus} />
+                            </ButtonIcon>
+                        </Link> : <div></div>
+                    }
+                    <Search filterNews={this.filterNews} />
                 </ButtonAndSearchDiv>
                 <NewsContainer key={news.id}>
-                    {news.map(news => (                       
+                    {news.map(news => (
                         <Link style={{ textDecoration: 'none' }} to={`/news/view/${news.news_url}`}>
                             <NewsItem>
                                 <h6>  Autor: {news.author.name} </h6>
@@ -55,7 +55,7 @@ class Home extends Component {
                                     {news.title}
                                 </h2>
                                 <p dangerouslySetInnerHTML={{ __html: news.content.substring(0, news.thumb_url ? 100 : 190) + "..." }} />
-                                { news.thumb_url ? <img src={news.thumb_url} alt="Thumbnail" /> : null } 
+                                {news.thumb_url ? <img src={news.thumb_url} alt="Thumbnail" /> : null}
                                 <br />
                             </NewsItem>
                         </Link>

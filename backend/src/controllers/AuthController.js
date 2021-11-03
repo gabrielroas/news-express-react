@@ -22,9 +22,9 @@ module.exports = {
             const { email, password } = req.body;
             const user = await User.findOne({ where: { email: email } });
             if (user) {
-                const compareEncryptedPassword = await bcrypt.compare(password, user.password);
+                const compare_encrypted_password = await bcrypt.compare(password, user.password);
 
-                if (compareEncryptedPassword) {
+                if (compare_encrypted_password) {
                     const token = jwt.sign({ user: user.id }, process.env.JWT_SECRET, { expiresIn: '365d' });
                     res.status(202).json({ success: "Successfully logged in", token: token });
                 } else {
