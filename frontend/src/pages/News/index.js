@@ -27,6 +27,8 @@ class News extends Component {
     api.delete(`news/view/${this.props.match.params.news_url}/delete`)
       .then(res => {
       })
+    window.location.href = "/";
+
   }
 
   render() {
