@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import api from "../../services/api";
 import { Title, HorizontalLine } from "./styles";
 import { NavLink } from "react-router-dom";
+import Search from "../../components/Search";
 
 class Home extends Component {
     state = {
@@ -9,8 +10,15 @@ class Home extends Component {
     }
 
     async componentDidMount() {
-        const response = await api.get('news')
+        const response = await api.get('news?title=')
         this.setState({ news: response.data });
+    }
+    filterNews = async (e) => {
+        const filterName = e.target.elements.filterName.value;
+        e.preventDefault();
+        const response = await api.get('news?title=' + filterName)
+        this.setState({ news: response.data });
+        console.log(this.state.news)
     }
 
     render() {
@@ -18,6 +26,7 @@ class Home extends Component {
 
         return (
             <div>
+                <div><Search filterNews={this.filterNews} /></div>
                 <Title>Ultimas Notícias</Title>
                 <HorizontalLine />
                 <form action="/news/create">
