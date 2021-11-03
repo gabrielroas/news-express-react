@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import api from "../../services/api";
-import { Title, HorizontalLine, SearchDiv } from "./styles";
-import { NavLink } from "react-router-dom";
+import { Title, HorizontalLine, ButtonAndSearchDiv, Button, ButtonIcon, NewsContainer, NewsItem } from "./styles";
+import { Link } from "react-router-dom";
 import Search from "../../components/Search";
+import { isAuthenticated } from "../../services/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+
 
 class Home extends Component {
     state = {
@@ -20,7 +24,7 @@ class Home extends Component {
         const response = await api.get('news?title=' + filterName)
         this.setState({ news: response.data });
         this.setState({ search: true });
-        if(!filterName) {
+        if (!filterName) {
             this.setState({ search: false });
         }
     }
@@ -30,24 +34,33 @@ class Home extends Component {
 
         return (
             <div>
-                <SearchDiv><Search filterNews={this.filterNews} /></SearchDiv>
-                <Title>{search ? "Resultado da Pesquisa" : "Ultimas Notícias"}</Title>
-                <HorizontalLine />
-                <form action="/news/create">
-                    <input type="submit" value="Nova notícia" />
-                </form>
-                {news.map(news => (
-                    <li key={news.id}>
-                        <h4>
-                            <NavLink to={`/news/view/${news.news_url}`}>{news.title}</NavLink>
-
-                        </h4>
-                        <div dangerouslySetInnerHTML={{ __html: news.content }}></div>
-                        Autor: {news.author.name}
-                        <img src={news.thumb_url} alt="Thumbnail" />
-                        <br />
-                    </li>
-                ))}
+                <Title>{search ? "Resultados da Pesquisa" : "Ultimas Notícias"}</Title>
+                <HorizontalLine lineWidth={search ? "270px" : "190px"} />
+                <ButtonAndSearchDiv>
+                {isAuthenticated() ?
+                    <Link style={{ textDecoration: 'none' }} to={`/news/create`}>
+                        <Button disabled="disabled" value="Nova notícia" />
+                        <ButtonIcon><FontAwesomeIcon color="black" icon={faPlus} />
+                        </ButtonIcon>
+                    </Link> : null
+                }
+                <Search filterNews={this.filterNews} />
+                </ButtonAndSearchDiv>
+                <NewsContainer key={news.id}>
+                    {news.map(news => (                       
+                        <Link style={{ textDecoration: 'none' }} to={`/news/view/${news.news_url}`}>
+                            <NewsItem>
+                                <h6>  Autor: {news.author.name} </h6>
+                                <h2>
+                                    {news.title}
+                                </h2>
+                                <p dangerouslySetInnerHTML={{ __html: news.content.substring(0, 150) + "..." }} />
+                                { news.thumb_url ? <img src={news.thumb_url} alt="Thumbnail" /> : null } 
+                                <br />
+                            </NewsItem>
+                        </Link>
+                    ))}
+                </NewsContainer>
             </div>
         )
     }
