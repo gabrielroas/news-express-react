@@ -78,7 +78,7 @@ class EditNews extends Component {
       <Container>
         <Form onSubmit={this.handleEditNews}>
           <img src={Logo} alt="News" />
-          Nova Notícia
+          Editar Notícia
           <hr />
           {this.state.error && <Error>{this.state.error}</Error>}
           {this.state.success && <Success>{this.state.success}</Success>}
