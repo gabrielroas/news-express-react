@@ -9,19 +9,19 @@ module.exports = {
             const user_id = req.userId;
             const { title, content, thumb_url } = req.body;
 
-            const news_title_replace = title.replace(/\s/g, "-").toLowerCase();            
+            const news_title_replace = title.replace(/\s/g, "-").toLowerCase();
             const news_title_cout = await News.count({
                 where: {
-                  title: title,
+                    title: title,
                 }
-              });
-            const news_title_url = `${news_title_replace}-${news_title_cout+1}`;
+            });
+            const news_title_url = `${news_title_replace}-${news_title_cout + 1}`;
 
             const news = await News.create({
                 user_id,
                 title,
                 content,
-                news_url : news_title_url,
+                news_url: news_title_url,
                 thumb_url,
             });
 
@@ -38,8 +38,8 @@ module.exports = {
 
             const news = await News.findOne({
                 where: { news_url: news_url },
-                include:  {association: 'author', attributes: ['name'] },
-                
+                include: { association: 'author', attributes: ['name', 'id'] },
+
             });
             if (!news) return res.status(404).json({ error: 'News not found.' });
 
@@ -64,17 +64,23 @@ module.exports = {
             }
 
             const { title, content, thumb_url } = req.body;
-            const custom_url = title.replace(/\s/g, "-").toLowerCase();
+            const news_title_replace = title.replace(/\s/g, "-").toLowerCase();
+            const news_title_cout = await News.count({
+                where: {
+                    title: title,
+                }
+            });
+            const news_title_url = `${news_title_replace}-${news_title_cout + 1}`;
 
             const newsEdit = await News.update(
-                { title, content, thumb_url, news_url: custom_url },
+                { title, content, thumb_url, news_url: news_title_url },
                 {
                     where: { news_url: news_url }
                 }
             );
             res.status(200).json({ success: "News updated" });
         }
-        catch (e) { 
+        catch (e) {
             res.status(500).json({ error: "Unable update news" });
         }
     },
