@@ -38,7 +38,7 @@ or
 sudo docker-compose ps
 ```
 
-4. Now that you have the containers installed and running you should run the database migrations to create the tables. Run the following command in the terminal:
+4. Now that you have the containers installed and running you should run the database migrations to create the tables schemas. Run the following command in the terminal:
 ```
 docker-compose exec app npx sequelize-cli db:migrate
 or 
