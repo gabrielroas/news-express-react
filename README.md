@@ -27,12 +27,12 @@ Wait for the installation to finish. If everything goes as expected you will get
 node:12 container for backend
 node:12 container fo frontend
 ``
+
 *You can check the containers that are running with the following command in the terminal:
-```
+`
 docker-compose ps
 or
 sudo docker-compose ps
-```
+`
 
-*
   
