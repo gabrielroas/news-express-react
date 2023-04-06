@@ -18,9 +18,7 @@ The application can be installed in a Docker environment with ease, just follow 
 
 3. Access the project's root folder `news-express-react` in the terminal and with Docker and Docker-Compose installed, execute the command in the terminal:
 ```
-docker-compose up -d --build  
-or
-sudo docker-compose up -d --build
+docker-compose up -d --build 
 ```
 Wait for the installation to finish. If everything goes as expected you will get three "done" messages, indicating that everything went as it should
 
@@ -34,17 +32,13 @@ node:12 container fo frontend
 * You can check the containers that are running with the following command in the terminal:
 ```
 docker-compose ps
-or
-sudo docker-compose ps
 ```
 
 4. Now that you have the containers installed and running you should run the database migrations to create the tables schemas. Run the following command in the terminal:
 ```
 docker-compose exec app npx sequelize-cli db:migrate
-or 
-sudo docker-compose exec app npx sequelize-cli db:migrate
 ```
-* You can kill the process of containers by clicking ctrl + c inside the terminal the containers are running. To start the containers again, put `docker-compose up --build or sudo docker-compose --build` in the terminal 
+* You can kill the process of containers by clicking ctrl + c inside the terminal the containers are running. To start the containers again, put `docker-compose up --build in the terminal 
 
 ## Usage Application
 .1 If you followed the step by step and you have the containers running you can access `http://localhost:3000` to access your application's frontend.
